@@ -5,31 +5,27 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
 import com.hassanhamdy.va_task.databinding.ActivityMainBinding
-import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         var seconds = 0
-
         binding.btnClick.setOnClickListener {
             adjustAlarm(++seconds)
         }
-        setContentView(binding.root)
-
     }
 
-    private fun adjustAlarm(second: Int){
+    private fun adjustAlarm(second: Int) {
         val calendar = Calendar.getInstance()
-        calendar.add(Calendar.MINUTE,second)
+        calendar.add(Calendar.MINUTE, second)
         startAlarm(calendar)
     }
 

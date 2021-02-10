@@ -14,7 +14,7 @@ class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         Log.d(
             "HASSAN",
-            "RECEIVER NOW" + SimpleDateFormat().format(Calendar.getInstance().getTime())
+            "RECEIVER NOW" +Calendar.getInstance().timeInMillis
         )
 
         // This method is called when the BroadcastReceiver is receiving an Intent broadcast.
@@ -28,6 +28,6 @@ class AlarmReceiver : BroadcastReceiver() {
         val calendar = Calendar.getInstance()
         calendar.add(Calendar.MINUTE, 1)
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
-        Log.d("HASSAN", "RECEIVER ALARM AGAIN" + SimpleDateFormat().format(calendar.getTime()))
+        Log.d("HASSAN", "RECEIVER ALARM AGAIN" + calendar.timeInMillis)
     }
 }
