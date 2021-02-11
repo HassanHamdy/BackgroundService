@@ -33,6 +33,18 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    flavorDimensions "profiles"
+    productFlavors {
+        QA {
+            dimension "profiles"
+            applicationIdSuffix ".qa"
+        }
+        Production {
+            dimension "profiles"
+            applicationIdSuffix ".production"
+        }
+    }
 }
 
 dependencies {
