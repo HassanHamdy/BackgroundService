@@ -18,7 +18,7 @@
         </activity>
 
         <receiver
-            android:name=".AlarmReceiver"
+            android:name=".backgroundService.AlarmReceiver"
             android:enabled="true"
             android:exported="false" />
     </application>

@@ -1,4 +1,4 @@
-package com.hassanhamdy.va_task
+package com.hassanhamdy.va_task.utils
 
 import android.annotation.TargetApi
 import android.app.NotificationChannel
@@ -11,8 +11,9 @@ import android.graphics.Color
 import android.media.RingtoneManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import com.hassanhamdy.va_task.MainActivity
 
-class  NotificationUtils(base: Context) : ContextWrapper(base) {
+class NotificationUtils(base: Context, var equation: String) : ContextWrapper(base) {
 
     val MYCHANNEL_ID = "App Alert Notification ID"
     val MYCHANNEL_NAME = "App Alert Notification"
@@ -28,15 +29,17 @@ class  NotificationUtils(base: Context) : ContextWrapper(base) {
     // Create channel for Android version 26+
     @TargetApi(Build.VERSION_CODES.O)
     private fun createChannels() {
-        val channel = NotificationChannel(MYCHANNEL_ID, MYCHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH)
+        val channel =
+            NotificationChannel(MYCHANNEL_ID, MYCHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH)
         channel.enableVibration(true)
 
         getManager().createNotificationChannel(channel)
     }
 
     // Get Manager
-    fun getManager() : NotificationManager {
-        if (manager == null) manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    fun getManager(): NotificationManager {
+        if (manager == null) manager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         return manager as NotificationManager
     }
 
@@ -47,7 +50,7 @@ class  NotificationUtils(base: Context) : ContextWrapper(base) {
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
         return NotificationCompat.Builder(applicationContext, MYCHANNEL_ID)
             .setContentTitle("Alarm!")
-            .setContentText("Your AlarmManager is working.")
+            .setContentText(equation)
             .setSmallIcon(android.R.drawable.ic_lock_power_off)
             .setColor(Color.YELLOW)
             .setContentIntent(pendingIntent)
